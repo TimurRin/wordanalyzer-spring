@@ -7,7 +7,7 @@ public class WordAnalyzer {
 	private final int count;
 
 	public WordAnalyzer(char letter, int count) {
-		this.letter = letter;
+		this.letter = Character.toLowerCase(letter);
 		this.count = count;
 	}
 
@@ -17,6 +17,31 @@ public class WordAnalyzer {
 
 	public int getCount() {
 		return count;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		double result = 1;
+		result = prime * result + letter;
+		result = prime * result + count;
+		return (int) result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		WordAnalyzer other = (WordAnalyzer) obj;
+		if (letter != other.letter)
+			return false;
+		if (count != other.count)
+			return false;
+		return true;
 	}
 
 	public static WordAnalyzer analyze(String word) {
